@@ -61,4 +61,69 @@ In this workshop we will be using the Amplify CLI to orchestrate the spinning up
 
 In this section you will be creating an Amplify Project that will be using for the duration of the workshop.
 
-1. Navigate to the project folder you downloaded at the beginning of this workshop and open up a terminal window at the root folder.
+1. Navigate to the UnicornSports folder you downloaded at the beginning of this workshop and open up a terminal window at the root folder.
+
+    | ![Project Starting LS](/backend-screenshots/startLS.png) |
+    | :--: |
+    | <b>Sample `ls` command in the UnicornSports directory </b> |
+
+1. Now that you are in the UnicornSports folder, you can run 
+    ```
+    amplify init
+    ```
+1. You will be asked to provide a project name. The default project name will work for this. You can just press `<Enter>`
+    <pre>
+    ? Enter a name for the project <b>unicornsports</b>
+    </pre>
+1. The CLI will identify which type of project you will be building. The default should look like what is below. If you don't see the correct information check that you are in the right folder.
+    <pre>
+    Project information
+    | Name: <b>unicornsports</b>
+    | Environment: <b>dev</b>
+    | Default editor: <b>Visual Studio Code</b>
+    | App type: <b>javascript</b>
+    | Javascript framework: <b>react</b>
+    | Source Directory Path: <b>src</b>
+    | Distribution Directory Path: <b>build</b>
+    | Build Command: <b>npm run-script build</b>
+    | Start Command: <b>npm run-script start</b>
+    </pre>
+    > Note: `Default Editor` can be changed or maybe different.
+1. If everything is correct you can answer the CLI prompt with `y`
+    <pre>
+    ? Initialize the project with the above configuration? <b>Y</b>
+    </pre>
+1. Next it will prompt you to provide a authentication method you would like to use for setting up your AWS resources and select which profile you would like to use. If you are using Cloud9 select `default`, otherwise select the profile you configured earlier.
+    <pre>
+    ? Select the authentication method you want to use: <b>AWS profile</b>
+    ? Please choose the profile you want to use <b>default</b>
+    </pre>
+1. At this point we will wait for the initialization of our AWS Account to happen. This inital CloudFormation will spin up a brand new S3 bucket to hold the CloudFormation files and create a few placeholder roles for Auth'd and Unauth'd users.
+1. When the Cloudformation is completed you should some text like below. If you do not, check out the FAQ section in the wiki.
+    ```
+    ✔ Successfully created initial AWS cloud resources for deployments.
+    ✔ Initialized provider successfully.
+    Initialized your environment successfully.
+
+    Your project has been successfully initialized and connected to the cloud!
+
+    Some next steps:
+    "amplify status" will show you what you've added already and if it's locally configured or deployed
+    "amplify add <category>" will allow you to add features like user login or a backend API
+    "amplify push" will build all your local backend resources and provision it in the cloud
+    "amplify console" to open the Amplify Console and view your project status
+    "amplify publish" will build all your local backend and frontend resources (if you have hosting category added) and provision it in the cloud
+
+    Pro tip:
+    Try "amplify add api" to create a backend API and then "amplify publish" to deploy everything
+    ```
+1. Now that we have our environment stood up lets get to adding our backend responsable to creating our live streams and holding our metadata. To start we will run this command:
+    ```
+    amplify add video
+    ```
+1. It will run through some prompts which we will explain below as they happen:
+    <pre>
+    ? Select from one of the below mentioned services: <b>Live Streaming</b>
+    ? Provide a firendly name for your resource to be used as a label for this category in the project: <b>myivs</b>
+    </pre>
+    
