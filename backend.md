@@ -34,7 +34,7 @@ In this workshop we will be using the Amplify CLI to orchestrate the spinning up
       ```
   </details>
   <details>
-      <summary>Cloud 9 Setup (both Event Engine or Personal Account)</summary>
+      <summary>Local Desktop</summary>
 
   1. Using a personal account means you need to configure your AWS CLI to the right account you are using for the workshop.
   1. If you have the AWS CLI installed you can simply configure your credentials via with your new credentials.
@@ -121,9 +121,56 @@ In this section you will be creating an Amplify Project that will be using for t
     ```
     amplify add video
     ```
-1. It will run through some prompts which we will explain below as they happen:
+1. After running the commands it will prompt you with some questions to spin up the right video resources.
     <pre>
     ? Select from one of the below mentioned services: <b>Live Streaming</b>
     ? Provide a firendly name for your resource to be used as a label for this category in the project: <b>myivs</b>
     </pre>
-    
+
+    > Today we will be focusing on building out a Live Streaming Video Management System. If you are interested in building out Video-On-Demand checkout our workshop Unicornflix
+
+    <pre>
+    ? Do you want to create a single channel or an API to manager multiple channels? <b>Video Management Service</b>
+    ? Choose the default stream quality: <b>Basic (SD Stream)</b>
+    ? Choose the default stream latency type: <b>Ultra-low latency (~5 seconds)</b>
+    </pre>
+
+    > Today for the workshop we will be setting up the stream quality to SD Stream to save on bandwith due to a lot of users spinning up streams. You can also use Amplify Video to create a single channel as well.
+
+    <pre>
+    ? Select your Auth Model: <b>Auth</b>
+    </pre>
+
+    > This will configure Cognito to be used for your authentication model. In an extension we will talk about using API Key to do advanced Auth method to allow Unauth'd users to browse chanels.
+1. Now that you have configured your projects backend you can now push your resources by running this command: 
+    ```
+    amplify push
+    ```
+    <pre>
+
+    </pre>
+
+1. Now you are prompted with a few question for codegen and to verify you want to push. 
+    <pre>
+    ✔ All resources copied.
+
+        Current Environment: dev
+        
+    ┌──────────┬────────────────────┬───────────┬───────────────────┐
+    │ Category │ Resource name      │ Operation │ Provider plugin   │
+    ├──────────┼────────────────────┼───────────┼───────────────────┤
+    │ Auth     │ VideoAuth          │ Create    │ awscloudformation │
+    ├──────────┼────────────────────┼───────────┼───────────────────┤
+    │ Api      │ VideoManagementApi │ Create    │ awscloudformation │
+    ├──────────┼────────────────────┼───────────┼───────────────────┤
+    │ Video    │ myivs              │ Create    │ awscloudformation │
+    └──────────┴────────────────────┴───────────┴───────────────────┘
+    ? Are you sure you want to continue? (Y/n) <b> Y </b>
+    ? Do you want to generate code fro your newly created GraphQL API <b> Y </b>
+    ? Choose your code generation language target <b> javascript </b>
+    ? Enter the file name pattern of graphql queries, mutations and subscriptions <b>src/graphql/**/*.js</b>
+    ? Do you want to generate/update all possible GraphQL operations - queries, mutations and subscriptions <b>Y</b>
+    ? Enter maximum statement depth [increase from default if your schema is deeply nested] <b>2</b>
+    </pre>
+
+1. Now wait for the push to succeed. This should take around 4-5 minutes.
